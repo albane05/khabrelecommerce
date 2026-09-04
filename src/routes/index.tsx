@@ -11,19 +11,23 @@ import {
   Users,
   FileSpreadsheet,
   ListChecks,
-  Infinity as InfinityIcon,
   MessageCircle,
   Instagram,
   Video,
   Check,
-  ArrowDown,
+  ArrowRight,
   Sparkles,
+  Zap,
+  ShieldCheck,
+  GraduationCap,
+  TrendingUp,
   Plus,
   Minus,
+  Trophy,
 } from "lucide-react";
 
 import { CountUp } from "@/components/CountUp";
-import portrait from "@/assets/portrait-placeholder.jpg";
+import heroImg from "@/assets/hero.jpg";
 import credibility from "@/assets/credibility.jpg";
 
 export const Route = createFileRoute("/")({
@@ -50,71 +54,39 @@ const WHATSAPP = "http://wa.me/24177146624";
 const TIKTOK = "https://www.tiktok.com/@khabrel_ecom";
 const INSTAGRAM = "https://www.instagram.com/khabrel._.ecom";
 
-function WhatsAppButton({ label }: { label: string }) {
-  return (
-    <a
-      href={WHATSAPP}
-      target="_blank"
-      rel="noreferrer"
-      aria-label={label}
-      className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-whatsapp/40 bg-whatsapp/10 text-whatsapp transition-colors hover:bg-whatsapp/20"
-    >
-      <MessageCircle className="h-5 w-5" fill="currentColor" strokeWidth={0} />
-    </a>
-  );
-}
-
-function PrimaryButton({ href, children }: { href: string; children: string }) {
-  return (
-    <a
-      href={href}
-      className="inline-flex h-12 flex-1 items-center justify-center rounded-lg bg-gradient-primary px-6 text-sm font-semibold text-primary-foreground glow transition-transform hover:-translate-y-0.5"
-    >
-      {children}
-    </a>
-  );
-}
-
-function Section({
-  id,
-  children,
-  className = "",
-}: {
-  id?: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <section id={id} className={`px-5 py-16 sm:py-24 ${className}`}>
-      <div className="mx-auto w-full max-w-6xl">{children}</div>
-    </section>
-  );
-}
+const navLinks = [
+  { label: "Méthode", href: "#methode" },
+  { label: "Résultats", href: "#resultats" },
+  { label: "Formation", href: "#formation" },
+  { label: "Coaching", href: "#coaching" },
+  { label: "Témoignages", href: "#temoignages" },
+  { label: "FAQ", href: "#faq" },
+];
 
 const stats = [
-  { value: 2, suffix: " ans", label: "d'expérience" },
-  { value: 1, suffix: "M+ FCFA", label: "de CA généré par jour" },
-  { value: 300, suffix: "+", label: "élèves accompagnés" },
-  { value: 200, suffix: "M+ FCFA", label: "déjà générés" },
+  { value: 2, suffix: " ans", label: "d'expérience", icon: Zap },
+  { value: 1, suffix: "M+ FCFA", label: "de CA généré par jour", icon: TrendingUp },
+  { value: 300, suffix: "+", label: "élèves accompagnés", icon: GraduationCap },
+  { value: 200, suffix: "M+ FCFA", label: "déjà générés", icon: Trophy },
 ];
 
 const formationProgram = [
-  { icon: Brain, text: "Mindset de l'e-commerçant" },
-  { icon: Search, text: "Comment trouver son produit gagnant" },
-  { icon: Ship, text: "Maîtrise de l'importation (Chine 🇨🇳 - Dubaï)" },
-  { icon: Store, text: "Création de la boutique Shopify optimisée grâce à l'IA" },
-  { icon: Clapperboard, text: "Création des créas publicitaires" },
-  { icon: Facebook, text: "Publicité Facebook" },
-  { icon: Music2, text: "Publicité TikTok" },
-  { icon: Users, text: "Comment mettre en place une bonne équipe" },
+  { icon: Brain, title: "Mindset de l'e-commerçant" },
+  { icon: Search, title: "Comment trouver son produit gagnant" },
+  { icon: Ship, title: "Maîtrise de l'importation (Chine 🇨🇳 - Dubaï)" },
+  { icon: Store, title: "Boutique Shopify optimisée grâce à l'IA" },
+  { icon: Clapperboard, title: "Création des créas publicitaires" },
+  { icon: Facebook, title: "Publicité Facebook" },
+  { icon: Music2, title: "Publicité TikTok" },
+  { icon: Users, title: "Comment mettre en place une bonne équipe" },
 ];
 
 const coachingProgram = [
-  { icon: Search, text: "Comment trouver un produit gagnant" },
-  { icon: Store, text: "Comment créer une boutique Shopify très optimisée avec l'IA" },
-  { icon: Music2, text: "Stratégie TikTok Ads" },
-  { icon: Facebook, text: "Stratégie Facebook Ads" },
-  { icon: Ship, text: "Maîtrise de l'importation en Chine 🇨🇳, Dubaï, Turquie 🇹🇷" },
+  "Comment trouver un produit gagnant",
+  "Comment créer une boutique Shopify très optimisée avec l'IA",
+  "Stratégie TikTok Ads",
+  "Stratégie Facebook Ads",
+  "Maîtrise de l'importation en Chine 🇨🇳, Dubaï, Turquie 🇹🇷",
 ];
 
 const faq = {
@@ -146,14 +118,60 @@ const faq = {
   ],
 };
 
-function Price({ old, now }: { old: string; now: string }) {
+function Logo() {
   return (
-    <div className="flex items-baseline gap-3">
-      <span className="text-sm font-medium text-muted-foreground line-through">{old}</span>
-      <span className="font-display text-3xl font-bold text-gradient-primary sm:text-4xl">
-        {now}
+    <a href="#top" className="flex items-center gap-2.5">
+      <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-primary">
+        <Sparkles className="h-4 w-4 text-primary-foreground" />
       </span>
-    </div>
+      <span className="leading-none">
+        <span className="block font-display text-sm font-bold tracking-tight">KHABREL</span>
+        <span className="block text-[9px] tracking-[0.25em] text-muted-foreground">
+          ECOM ACADÉMIE
+        </span>
+      </span>
+    </a>
+  );
+}
+
+function Eyebrow({ children }: { children: string }) {
+  return (
+    <p className="text-center text-[11px] font-semibold tracking-[0.25em] text-primary-glow uppercase">
+      {children}
+    </p>
+  );
+}
+
+function WhatsAppButton({ label }: { label: string }) {
+  return (
+    <a
+      href={WHATSAPP}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={label}
+      className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-whatsapp/40 bg-whatsapp/10 text-whatsapp transition-colors hover:bg-whatsapp/20"
+    >
+      <MessageCircle className="h-4.5 w-4.5" fill="currentColor" strokeWidth={0} />
+    </a>
+  );
+}
+
+function CtaButton({
+  href,
+  children,
+  className = "",
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <a
+      href={href}
+      className={`inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-gradient-primary px-5 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5 ${className}`}
+    >
+      {children}
+    </a>
   );
 }
 
@@ -162,356 +180,503 @@ function Index() {
   const [open, setOpen] = useState<string | null>(null);
 
   return (
-    <main className="min-h-screen bg-background">
-      {/* HERO */}
-      <header className="relative overflow-hidden px-5 pt-8">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -top-40 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/25 blur-[120px]"
-        />
-        <nav className="relative mx-auto flex w-full max-w-6xl items-center justify-between">
-          <span className="font-display text-lg font-bold tracking-tight">Khabrel</span>
-          <div className="flex items-center gap-2">
-            {[
-              { href: WHATSAPP, icon: MessageCircle, label: "WhatsApp" },
-              { href: TIKTOK, icon: Music2, label: "TikTok" },
-              { href: INSTAGRAM, icon: Instagram, label: "Instagram" },
-            ].map(({ href, icon: Icon, label }) => (
+    <div id="top" className="min-h-screen bg-background">
+      {/* NAV */}
+      <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
+        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5">
+          <Logo />
+          <div className="hidden items-center gap-7 lg:flex">
+            {navLinks.map((l) => (
               <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={label}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-secondary/60 text-muted-foreground transition-colors hover:text-foreground"
+                key={l.href}
+                href={l.href}
+                className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
-                <Icon className="h-4 w-4" />
+                {l.label}
               </a>
             ))}
           </div>
-        </nav>
-
-        <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 py-14 sm:py-20 lg:grid-cols-2">
-          <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wide text-primary-glow uppercase">
-              <Sparkles className="h-3.5 w-3.5" /> Khabrel Ecom Académie
-            </span>
-            <h1 className="mt-5 font-display text-4xl leading-tight font-extrabold sm:text-6xl">
-              Khabrel
-            </h1>
-            <p className="mt-2 text-base font-medium text-primary-glow sm:text-lg">
-              Khabrel — Coach Formateur en E-commerce
-            </p>
-            <p className="mt-6 font-display text-xl leading-snug font-semibold sm:text-2xl">
-              1 million FCFA de chiffre d'affaires par jour, obtenu grâce à une méthode simple
-              et reproductible
-            </p>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Ce que j'applique au quotidien pour générer ce résultat, je te l'enseigne étape
-              par étape.
-            </p>
-            <a
-              href="#formation"
-              className="mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-gradient-primary px-7 text-sm font-semibold text-primary-foreground glow transition-transform hover:-translate-y-0.5"
-            >
-              Découvre la méthode <ArrowDown className="h-4 w-4" />
-            </a>
-          </div>
-
-          <div className="card-surface relative overflow-hidden">
-            <img
-              src={portrait}
-              alt="Khabrel, coach formateur en e-commerce"
-              width={1024}
-              height={1280}
-              className="h-72 w-full object-cover opacity-90 sm:h-[26rem]"
-            />
-          </div>
+          <CtaButton href="#formation" className="h-9 px-4 text-xs">
+            Rejoindre <ArrowRight className="h-3.5 w-3.5" />
+          </CtaButton>
         </div>
-      </header>
+      </nav>
 
-      {/* STATS */}
-      <Section className="border-y border-border bg-surface/40">
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {stats.map((s) => (
-            <div key={s.label} className="card-surface p-5 text-center">
-              <div className="font-display text-2xl font-bold text-gradient-primary sm:text-3xl">
-                <CountUp value={s.value} suffix={s.suffix} />
-              </div>
-              <p className="mt-2 text-xs text-muted-foreground sm:text-sm">{s.label}</p>
-            </div>
-          ))}
-        </div>
-        <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-muted-foreground">
-          Des résultats concrets, obtenus par des étudiants, des salariés et des entrepreneurs
-          à travers l'Afrique.
-        </p>
-      </Section>
-
-      {/* ACCROCHE */}
-      <Section>
-        <h2 className="mx-auto max-w-3xl text-center font-display text-2xl leading-snug font-bold sm:text-4xl">
-          Peu importe ton statut aujourd'hui, tu peux te lancer dans l'e-commerce et
-          construire ton <span className="text-gradient-primary">indépendance financière</span>.
-        </h2>
-      </Section>
-
-      {/* PRÉSENTATION FORMATION */}
-      <Section className="pt-0">
-        <div className="card-surface p-8 text-center sm:p-14">
-          <h2 className="font-display text-2xl font-bold sm:text-3xl">
-            Bienvenue dans KHABREL ECOM ACADÉMIE
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm text-muted-foreground sm:text-base">
-            La formation complète pour construire ton business e-commerce, de zéro jusqu'aux
-            premiers résultats.
-          </p>
-        </div>
-      </Section>
-
-      {/* CRÉDIBILITÉ */}
-      <Section className="pt-0">
-        <div className="grid items-center gap-8 lg:grid-cols-2">
-          <div>
-            <h2 className="font-display text-2xl font-bold sm:text-4xl">
-              Ce que j'enseigne, je le vis au quotidien
-            </h2>
-            <p className="mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Pas de théorie apprise dans un livre. Ce que je partage avec toi, c'est ce que
-              j'applique moi-même chaque jour pour générer du chiffre d'affaires en e-commerce.
-            </p>
-          </div>
-          <div className="card-surface overflow-hidden">
-            <img
-              src={credibility}
-              alt="Tableau de bord e-commerce affichant plusieurs millions FCFA de chiffre d'affaires"
-              loading="lazy"
-              width={1280}
-              height={960}
-              className="h-full w-full object-cover"
-            />
-          </div>
-        </div>
-      </Section>
-
-      {/* OFFRES */}
-      <Section id="formation" className="pt-0">
-        <div className="grid gap-6 lg:grid-cols-2">
-          {/* FORMATION */}
-          <article className="card-surface flex flex-col p-7 sm:p-9">
-            <h2 className="font-display text-xl font-bold sm:text-2xl">
-              Formation — KHABREL ECOM ACADÉMIE
-            </h2>
-            <ul className="mt-6 space-y-3">
-              {formationProgram.map(({ icon: Icon, text }) => (
-                <li key={text} className="flex items-start gap-3 text-sm">
-                  <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/15 text-primary-glow">
-                    <Icon className="h-4 w-4" />
-                  </span>
-                  <span className="text-muted-foreground">{text}</span>
-                </li>
-              ))}
-            </ul>
-
-            <p className="mt-7 text-xs font-semibold tracking-wide text-primary-glow uppercase">
-              Bonus inclus
-            </p>
-            <ul className="mt-3 space-y-3">
-              {[
-                { icon: FileSpreadsheet, text: "Fichier de gestion de stock" },
-                { icon: ListChecks, text: "Liste de 100 produits gagnants" },
-              ].map(({ icon: Icon, text }) => (
-                <li key={text} className="flex items-start gap-3 text-sm">
-                  <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/15 text-primary-glow">
-                    <Icon className="h-4 w-4" />
-                  </span>
-                  <span className="text-muted-foreground">{text}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-7 flex flex-wrap gap-2">
-              {["Accès à vie", "Accès au groupe privé"].map((a) => (
-                <span
-                  key={a}
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1.5 text-xs text-muted-foreground"
+      <main>
+        {/* HERO */}
+        <section className="relative overflow-hidden px-5 pt-14 pb-16">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-32 right-0 h-[28rem] w-[28rem] rounded-full bg-primary/20 blur-[140px]"
+          />
+          <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
+            <div>
+              <span className="inline-flex items-center rounded-md border border-primary/40 bg-primary/10 px-3 py-1 text-[10px] font-semibold tracking-[0.2em] text-primary-glow uppercase">
+                Khabrel — Coach Formateur en E-commerce
+              </span>
+              <h1 className="mt-6 font-display text-4xl leading-[1.08] font-extrabold sm:text-5xl">
+                1 million FCFA de CA
+                <br />
+                par jour.
+                <br />
+                <span className="text-gradient-primary">Méthode reproductible.</span>
+              </h1>
+              <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
+                Ce que j'applique au quotidien pour générer ce résultat, je te l'enseigne
+                étape par étape.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <CtaButton href="#methode">
+                  Découvre la méthode <ArrowRight className="h-4 w-4" />
+                </CtaButton>
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-secondary/60 px-5 text-sm font-semibold transition-colors hover:bg-secondary"
                 >
-                  <InfinityIcon className="h-3.5 w-3.5 text-primary-glow" /> {a}
-                </span>
-              ))}
+                  Écris-moi sur WhatsApp
+                  <MessageCircle className="h-4 w-4 text-whatsapp" />
+                </a>
+              </div>
+              <div className="mt-8 flex items-center gap-3">
+                <div className="flex -space-x-2">
+                  {["K", "A", "M", "S"].map((c) => (
+                    <span
+                      key={c}
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-background bg-accent text-[11px] font-semibold"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-xs leading-snug text-muted-foreground">
+                  Rejoins 300+ élèves accompagnés
+                  <br />à travers l'Afrique.
+                </p>
+              </div>
             </div>
 
-            <div className="mt-auto pt-8">
-              <Price old="150.000 FCFA" now="45.000 FCFA" />
-              <div className="mt-5 flex items-center gap-3">
-                <PrimaryButton href="#payment-formation">Rejoindre la formation</PrimaryButton>
+            <div className="relative">
+              <div className="overflow-hidden rounded-xl border border-border">
+                <img
+                  src={heroImg}
+                  alt="Khabrel travaillant sur son business e-commerce"
+                  width={1280}
+                  height={960}
+                  className="h-72 w-full object-cover sm:h-[24rem]"
+                />
+              </div>
+              <div className="card-surface absolute -top-5 -left-4 w-40 p-3 backdrop-blur-sm sm:-left-8">
+                <p className="text-[10px] text-muted-foreground">CA par jour</p>
+                <p className="font-display text-lg font-bold">1M+ FCFA</p>
+                <p className="text-[10px] text-primary-glow">Méthode reproductible</p>
+              </div>
+              <div className="card-surface absolute -right-3 bottom-16 w-36 p-3 backdrop-blur-sm sm:-right-6">
+                <p className="text-[10px] text-muted-foreground">Élèves</p>
+                <p className="font-display text-lg font-bold">300+</p>
+                <p className="text-[10px] text-primary-glow">Accompagnés</p>
+              </div>
+              <div className="card-surface absolute -bottom-5 left-8 w-40 p-3 backdrop-blur-sm">
+                <p className="text-[10px] text-muted-foreground">Généré par les élèves</p>
+                <p className="font-display text-lg font-bold">200M+ FCFA</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* BAND STATS */}
+        <section className="px-5 pb-20">
+          <div className="card-surface mx-auto grid w-full max-w-6xl grid-cols-2 gap-px overflow-hidden lg:grid-cols-4">
+            {stats.map(({ icon: Icon, value, suffix, label }) => (
+              <div key={label} className="p-6 text-center sm:p-8">
+                <span className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/15 text-primary-glow">
+                  <Icon className="h-4.5 w-4.5" />
+                </span>
+                <p className="mt-4 font-display text-xl font-bold sm:text-2xl">
+                  <CountUp value={value} suffix={suffix} />
+                </p>
+                <p className="mt-1.5 text-xs text-muted-foreground">{label}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mx-auto mt-6 max-w-2xl text-center text-xs text-muted-foreground">
+            Des résultats concrets, obtenus par des étudiants, des salariés et des
+            entrepreneurs à travers l'Afrique.
+          </p>
+        </section>
+
+        {/* ACCROCHE + CRÉDIBILITÉ */}
+        <section id="methode" className="px-5 pb-20">
+          <div className="mx-auto w-full max-w-6xl">
+            <Eyebrow>La méthode</Eyebrow>
+            <h2 className="mx-auto mt-4 max-w-3xl text-center font-display text-2xl leading-snug font-bold sm:text-4xl">
+              Peu importe ton statut aujourd'hui, tu peux te lancer dans l'e-commerce et
+              construire ton <span className="text-gradient-primary">indépendance financière</span>.
+            </h2>
+
+            <div className="card-surface mt-12 grid items-center gap-8 p-6 sm:p-10 lg:grid-cols-2">
+              <div>
+                <span className="inline-flex items-center rounded-md border border-primary/40 bg-primary/10 px-3 py-1 text-[10px] font-semibold tracking-[0.2em] text-primary-glow uppercase">
+                  Bienvenue dans Khabrel Ecom Académie
+                </span>
+                <h3 className="mt-5 font-display text-xl font-bold sm:text-2xl">
+                  Ce que j'enseigne, je le vis au quotidien
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  La formation complète pour construire ton business e-commerce, de zéro
+                  jusqu'aux premiers résultats. Pas de théorie apprise dans un livre : ce que
+                  je partage avec toi, c'est ce que j'applique moi-même chaque jour pour
+                  générer du chiffre d'affaires en e-commerce.
+                </p>
+              </div>
+              <div className="overflow-hidden rounded-lg border border-border">
+                <img
+                  src={credibility}
+                  alt="Tableau de bord e-commerce affichant plusieurs millions FCFA de chiffre d'affaires"
+                  loading="lazy"
+                  width={1280}
+                  height={960}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PROGRAMME */}
+        <section id="formation" className="px-5 pb-20">
+          <div className="mx-auto w-full max-w-6xl">
+            <Eyebrow>Le programme</Eyebrow>
+            <h2 className="mt-4 text-center font-display text-2xl font-bold sm:text-4xl">
+              Tout ce qu'il te faut pour <span className="text-gradient-primary">vendre</span>
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-center text-sm text-muted-foreground">
+              Un système complet, de la recherche du produit gagnant jusqu'à la mise en place
+              de ton équipe.
+            </p>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {formationProgram.map(({ icon: Icon, title }) => (
+                <div key={title} className="card-surface flex gap-4 p-5">
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary-glow">
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <p className="text-sm font-semibold">{title}</p>
+                </div>
+              ))}
+              {[
+                { icon: FileSpreadsheet, title: "Bonus — Fichier de gestion de stock" },
+                { icon: ListChecks, title: "Bonus — Liste de 100 produits gagnants" },
+              ].map(({ icon: Icon, title }) => (
+                <div key={title} className="card-surface flex gap-4 border-primary/30 p-5">
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/25 text-primary-glow">
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <p className="text-sm font-semibold">{title}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* OFFRE 1 — FORMATION */}
+        <section className="px-5 pb-16">
+          <div className="card-surface mx-auto grid w-full max-w-6xl gap-8 p-6 sm:p-10 lg:grid-cols-[1.1fr_1fr_0.9fr]">
+            <div>
+              <span className="inline-flex items-center rounded-md border border-primary/40 bg-primary/10 px-3 py-1 text-[10px] font-semibold tracking-[0.2em] text-primary-glow uppercase">
+                Offre 1 — Formation
+              </span>
+              <h3 className="mt-5 font-display text-2xl font-bold">
+                Formation — KHABREL ECOM ACADÉMIE
+              </h3>
+              <p className="mt-3 text-sm text-muted-foreground">
+                Le système complet, à ton rythme, avec la communauté.
+              </p>
+              <ul className="mt-6 space-y-3">
+                {[
+                  "Accès à vie à tous les modules",
+                  "Accès au groupe privé",
+                  "2 bonus inclus (stock + 100 produits gagnants)",
+                  "Rejoins 300+ élèves accompagnés",
+                ].map((t) => (
+                  <li key={t} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary-glow" />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-lg border border-primary/30 bg-background/60 p-6">
+              <p className="text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
+                Accès à vie
+              </p>
+              <p className="mt-3 text-sm font-medium text-muted-foreground line-through">
+                150.000 FCFA
+              </p>
+              <p className="font-display text-4xl font-extrabold text-gradient-primary">
+                45.000 FCFA
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">Paiement unique</p>
+              <div className="mt-6 flex items-center gap-3">
+                <a
+                  href="#payment-formation"
+                  className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-primary px-4 text-sm font-semibold text-primary-foreground glow transition-transform hover:-translate-y-0.5"
+                >
+                  Rejoindre la formation <ArrowRight className="h-4 w-4" />
+                </a>
                 <WhatsAppButton label="Poser une question sur la formation via WhatsApp" />
               </div>
             </div>
-          </article>
 
-          {/* COACHING */}
-          <article className="card-surface flex flex-col p-7 sm:p-9">
-            <h2 className="font-display text-xl font-bold sm:text-2xl">
-              Coaching Individuel — KHABREL ECOM ACADÉMIE
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Un accompagnement en face à face sur Google Meet, où je te transmets les secrets
-              de l'écosystème e-commerce.
-            </p>
-            <ul className="mt-6 space-y-3">
-              {coachingProgram.map(({ icon: Icon, text }) => (
-                <li key={text} className="flex items-start gap-3 text-sm">
-                  <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/15 text-primary-glow">
-                    <Icon className="h-4 w-4" />
-                  </span>
-                  <span className="text-muted-foreground">{text}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="flex gap-4">
+              <ShieldCheck className="h-6 w-6 shrink-0 text-primary-glow" />
+              <div>
+                <p className="font-display text-sm font-bold text-primary-glow">
+                  Accès à vie & groupe privé
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  Tu gardes l'accès à tous les modules et aux mises à jour, et tu es
+                  accompagné dans le groupe privé.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <div className="mt-7 flex flex-wrap gap-2">
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1.5 text-xs text-muted-foreground">
-                <Video className="h-3.5 w-3.5 text-primary-glow" /> Sessions individuelles en
-                visio (Google Meet)
+        {/* OFFRE 2 — COACHING */}
+        <section id="coaching" className="px-5 pb-20">
+          <div className="card-surface mx-auto grid w-full max-w-6xl gap-8 p-6 sm:p-10 lg:grid-cols-[1.1fr_1fr_0.9fr]">
+            <div>
+              <span className="inline-flex items-center rounded-md border border-primary/40 bg-primary/10 px-3 py-1 text-[10px] font-semibold tracking-[0.2em] text-primary-glow uppercase">
+                Offre 2 — Coaching individuel
               </span>
+              <h3 className="mt-5 font-display text-2xl font-bold">
+                Coaching Individuel — KHABREL ECOM ACADÉMIE
+              </h3>
+              <p className="mt-3 text-sm text-muted-foreground">
+                Un accompagnement en face à face sur Google Meet, où je te transmets les
+                secrets de l'écosystème e-commerce.
+              </p>
+              <ul className="mt-6 space-y-3">
+                {coachingProgram.map((t) => (
+                  <li key={t} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary-glow" />
+                    {t}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="mt-auto pt-8">
-              <Price old="250.000 FCFA" now="85.000 FCFA" />
-              <div className="mt-5 flex items-center gap-3">
-                <PrimaryButton href="#payment-coaching">Rejoindre le coaching</PrimaryButton>
+            <div className="rounded-lg border border-primary/30 bg-background/60 p-6">
+              <p className="text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
+                Sessions individuelles
+              </p>
+              <p className="mt-3 text-sm font-medium text-muted-foreground line-through">
+                250.000 FCFA
+              </p>
+              <p className="font-display text-4xl font-extrabold text-gradient-primary">
+                85.000 FCFA
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">Places limitées</p>
+              <div className="mt-6 flex items-center gap-3">
+                <a
+                  href="#payment-coaching"
+                  className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-primary px-4 text-sm font-semibold text-primary-foreground glow transition-transform hover:-translate-y-0.5"
+                >
+                  Rejoindre le coaching <ArrowRight className="h-4 w-4" />
+                </a>
                 <WhatsAppButton label="Poser une question sur le coaching via WhatsApp" />
               </div>
             </div>
-          </article>
-        </div>
-      </Section>
 
-      {/* TÉMOIGNAGES */}
-      <Section className="pt-0">
-        <h2 className="text-center font-display text-2xl font-bold sm:text-4xl">
-          Ils ont franchi le cap
-        </h2>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <figure key={i} className="card-surface overflow-hidden">
-              <div className="flex aspect-4/5 items-center justify-center bg-secondary/40 text-xs text-muted-foreground">
-                Capture d'écran {i + 1}
+            <div className="flex gap-4">
+              <Video className="h-6 w-6 shrink-0 text-primary-glow" />
+              <div>
+                <p className="font-display text-sm font-bold text-primary-glow">
+                  Face à face sur Google Meet
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  Des sessions individuelles en visio, personnalisées selon ton niveau et tes
+                  objectifs.
+                </p>
               </div>
-              <figcaption className="border-t border-border p-4 text-xs text-muted-foreground">
-                Légende du résultat {i + 1}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </Section>
+            </div>
+          </div>
+        </section>
 
-      {/* FAQ */}
-      <Section className="pt-0">
-        <h2 className="text-center font-display text-2xl font-bold sm:text-4xl">
-          Tes questions, mes réponses
-        </h2>
-        <div className="mx-auto mt-8 flex w-fit gap-1 rounded-lg border border-border bg-secondary/50 p-1">
-          {(["formation", "coaching"] as const).map((t) => (
-            <button
-              key={t}
-              onClick={() => {
-                setTab(t);
-                setOpen(null);
-              }}
-              className={`rounded-md px-5 py-2 text-sm font-semibold capitalize transition-colors ${
-                tab === t
-                  ? "bg-gradient-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
+        {/* TÉMOIGNAGES */}
+        <section id="temoignages" className="px-5 pb-20">
+          <div className="mx-auto w-full max-w-6xl">
+            <Eyebrow>Résultats réels</Eyebrow>
+            <h2 className="mt-4 text-center font-display text-2xl font-bold sm:text-4xl">
+              Ils ont <span className="text-gradient-primary">franchi le cap</span>
+            </h2>
+            <div id="resultats" className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <figure key={i} className="card-surface overflow-hidden">
+                  <div className="flex aspect-4/5 items-center justify-center bg-background/60 text-xs text-muted-foreground">
+                    Capture d'écran {i + 1}
+                  </div>
+                  <figcaption className="border-t border-border p-4 text-xs text-muted-foreground">
+                    Légende du résultat {i + 1}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
 
-        <div className="mx-auto mt-8 max-w-3xl space-y-3">
-          {faq[tab].map((item) => {
-            const key = `${tab}-${item.q}`;
-            const isOpen = open === key;
-            return (
-              <div key={key} className="card-surface overflow-hidden">
+        {/* FAQ */}
+        <section id="faq" className="px-5 pb-20">
+          <div className="mx-auto w-full max-w-3xl">
+            <Eyebrow>FAQ</Eyebrow>
+            <h2 className="mt-4 text-center font-display text-2xl font-bold sm:text-4xl">
+              Tes questions, <span className="text-gradient-primary">mes réponses</span>
+            </h2>
+            <div className="mx-auto mt-8 flex w-fit gap-1 rounded-lg border border-border bg-secondary/50 p-1">
+              {(["formation", "coaching"] as const).map((t) => (
                 <button
-                  onClick={() => setOpen(isOpen ? null : key)}
-                  className="flex w-full items-center justify-between gap-4 p-5 text-left text-sm font-semibold"
+                  key={t}
+                  onClick={() => {
+                    setTab(t);
+                    setOpen(null);
+                  }}
+                  className={`rounded-md px-5 py-2 text-sm font-semibold capitalize transition-colors ${
+                    tab === t
+                      ? "bg-gradient-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
-                  {item.q}
-                  {isOpen ? (
-                    <Minus className="h-4 w-4 shrink-0 text-primary-glow" />
-                  ) : (
-                    <Plus className="h-4 w-4 shrink-0 text-primary-glow" />
-                  )}
+                  {t}
                 </button>
-                {isOpen && (
-                  <p className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">
-                    {item.a}
-                  </p>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </Section>
+              ))}
+            </div>
+            <div className="mt-8 space-y-3">
+              {faq[tab].map((item) => {
+                const key = `${tab}-${item.q}`;
+                const isOpen = open === key;
+                return (
+                  <div key={key} className="card-surface overflow-hidden">
+                    <button
+                      onClick={() => setOpen(isOpen ? null : key)}
+                      className="flex w-full items-center justify-between gap-4 p-5 text-left text-sm font-semibold"
+                    >
+                      {item.q}
+                      {isOpen ? (
+                        <Minus className="h-4 w-4 shrink-0 text-primary-glow" />
+                      ) : (
+                        <Plus className="h-4 w-4 shrink-0 text-primary-glow" />
+                      )}
+                    </button>
+                    {isOpen && (
+                      <p className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">
+                        {item.a}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
 
-      {/* CTA FINAL */}
-      <Section className="pt-0">
-        <div className="card-surface p-8 text-center sm:p-14">
-          <h2 className="font-display text-2xl font-bold sm:text-4xl">
-            Ta place dans l'e-commerce commence maintenant
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm text-muted-foreground sm:text-base">
-            Rejoins la formation ou le coaching, ou écris-moi sur WhatsApp si tu as des
-            questions avant.
-          </p>
-          <div className="mx-auto mt-8 flex max-w-2xl flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-            <PrimaryButton href="#payment-formation">Rejoindre la formation</PrimaryButton>
-            <PrimaryButton href="#payment-coaching">Rejoindre le coaching</PrimaryButton>
-            <div className="flex justify-center">
+        {/* CTA FINAL */}
+        <section className="px-5 pb-20">
+          <div className="card-surface mx-auto flex w-full max-w-5xl flex-col items-center gap-6 p-6 sm:p-8 lg:flex-row lg:justify-between">
+            <div className="text-center lg:text-left">
+              <h2 className="font-display text-xl font-bold sm:text-2xl">
+                Ta place dans l'e-commerce commence maintenant
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Rejoins la formation ou le coaching, ou écris-moi sur WhatsApp si tu as des
+                questions avant.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <CtaButton href="#payment-formation">Rejoindre la formation</CtaButton>
+              <CtaButton href="#payment-coaching">Rejoindre le coaching</CtaButton>
               <WhatsAppButton label="Écrire à Khabrel sur WhatsApp" />
             </div>
           </div>
-          <p className="mt-6 inline-flex items-center gap-2 text-xs text-muted-foreground">
-            <Check className="h-3.5 w-3.5 text-primary-glow" /> Réponse rapide sur WhatsApp
-          </p>
-        </div>
-      </Section>
+        </section>
+      </main>
 
       {/* FOOTER */}
       <footer className="border-t border-border px-5 py-12">
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-6 text-center">
+        <div className="mx-auto grid w-full max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="font-display text-lg font-bold">Khabrel</p>
-            <p className="mt-1 text-sm text-muted-foreground">Coach formateur en e-commerce</p>
+            <Logo />
+            <p className="mt-4 text-xs text-muted-foreground">
+              Khabrel — Coach formateur en e-commerce
+            </p>
+            <div className="mt-4 flex items-center gap-2">
+              {[
+                { href: WHATSAPP, icon: MessageCircle, label: "WhatsApp" },
+                { href: TIKTOK, icon: Music2, label: "TikTok" },
+                { href: INSTAGRAM, icon: Instagram, label: "Instagram" },
+              ].map(({ href, icon: Icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-secondary/60 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            {[
-              { href: WHATSAPP, icon: MessageCircle, label: "WhatsApp" },
-              { href: TIKTOK, icon: Music2, label: "TikTok" },
-              { href: INSTAGRAM, icon: Instagram, label: "Instagram" },
-            ].map(({ href, icon: Icon, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={label}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-secondary/60 text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <Icon className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
-          <p className="text-xs text-muted-foreground">
-            © 2026 Khabrel. Tous droits réservés.
-          </p>
+
+          {[
+            {
+              title: "Programme",
+              links: [
+                { label: "La méthode", href: "#methode" },
+                { label: "Formation", href: "#formation" },
+                { label: "Coaching", href: "#coaching" },
+              ],
+            },
+            {
+              title: "Ressources",
+              links: [
+                { label: "Témoignages", href: "#temoignages" },
+                { label: "FAQ", href: "#faq" },
+              ],
+            },
+            {
+              title: "Contact",
+              links: [
+                { label: "WhatsApp", href: WHATSAPP },
+                { label: "TikTok", href: TIKTOK },
+                { label: "Instagram", href: INSTAGRAM },
+              ],
+            },
+          ].map((col) => (
+            <div key={col.title}>
+              <p className="text-xs font-semibold tracking-wide uppercase">{col.title}</p>
+              <ul className="mt-4 space-y-2.5">
+                {col.links.map((l) => (
+                  <li key={l.label}>
+                    <a
+                      href={l.href}
+                      className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
+        <p className="mx-auto mt-10 w-full max-w-6xl border-t border-border pt-6 text-center text-xs text-muted-foreground">
+          © 2026 Khabrel. Tous droits réservés.
+        </p>
       </footer>
-    </main>
+    </div>
   );
 }
