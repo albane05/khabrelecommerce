@@ -28,6 +28,10 @@ import {
 import { CountUp } from "@/components/CountUp";
 import heroImg from "@/assets/hero.jpg";
 import credibility from "@/assets/credibility.jpg";
+import temoignage1 from "@/assets/temoignages/t1.jpg.asset.json";
+import temoignage2 from "@/assets/temoignages/t2.png.asset.json";
+import temoignage3 from "@/assets/temoignages/t3.png.asset.json";
+import temoignage4 from "@/assets/temoignages/t4.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -526,14 +530,22 @@ function Index() {
             <h2 className="mt-4 text-center font-display text-2xl font-bold sm:text-4xl">
               Ils ont <span className="text-gradient-primary">franchi le cap</span>
             </h2>
-            <div id="resultats" className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <figure key={i} className="card-surface overflow-hidden">
-                  <div className="flex aspect-4/5 items-center justify-center bg-background/60 text-xs text-muted-foreground">
-                    Capture d'écran {i + 1}
-                  </div>
+            <div id="resultats" className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { src: temoignage1.url, caption: "11 M FCFA de ventes sur le mois — Africa Store" },
+                { src: temoignage2.url, caption: "875 000 FCFA générés en une journée — Elysée" },
+                { src: temoignage3.url, caption: "1 112 000 FCFA de ventes en un jour — Gaboma Plus" },
+                { src: temoignage4.url, caption: "6,9 M FCFA de ventes en 7 jours — Petit Prix" },
+              ].map((t) => (
+                <figure key={t.src} className="card-surface overflow-hidden">
+                  <img
+                    src={t.src}
+                    alt={t.caption}
+                    loading="lazy"
+                    className="aspect-4/5 w-full object-cover object-top"
+                  />
                   <figcaption className="border-t border-border p-4 text-xs text-muted-foreground">
-                    Légende du résultat {i + 1}
+                    {t.caption}
                   </figcaption>
                 </figure>
               ))}
