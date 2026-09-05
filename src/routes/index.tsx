@@ -249,7 +249,7 @@ function Index() {
                   className="inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-secondary/60 px-5 text-sm font-semibold transition-colors hover:bg-secondary"
                 >
                   Écris-moi sur WhatsApp
-                  <MessageCircle className="h-4 w-4 text-whatsapp" />
+                  <WhatsAppIcon className="h-4 w-4 text-whatsapp" />
                 </a>
               </div>
               <div className="mt-8 flex items-center gap-3">
