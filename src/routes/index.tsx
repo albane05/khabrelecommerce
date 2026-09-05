@@ -164,7 +164,7 @@ function WhatsAppButton({ label }: { label: string }) {
       aria-label={label}
       className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-whatsapp/40 bg-whatsapp/10 text-whatsapp transition-colors hover:bg-whatsapp/20"
     >
-      <MessageCircle className="h-4.5 w-4.5" fill="currentColor" strokeWidth={0} />
+      <WhatsAppIcon className="h-4.5 w-4.5" />
     </a>
   );
 }
