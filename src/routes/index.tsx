@@ -11,7 +11,6 @@ import {
   Users,
   FileSpreadsheet,
   ListChecks,
-  MessageCircle,
   Instagram,
   Video,
   Check,
