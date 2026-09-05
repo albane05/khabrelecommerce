@@ -626,7 +626,7 @@ function Index() {
             </p>
             <div className="mt-4 flex items-center gap-2">
               {[
-                { href: WHATSAPP, icon: MessageCircle, label: "WhatsApp" },
+                { href: WHATSAPP, icon: WhatsAppIcon, label: "WhatsApp" },
                 { href: TIKTOK, icon: Music2, label: "TikTok" },
                 { href: INSTAGRAM, icon: Instagram, label: "Instagram" },
               ].map(({ href, icon: Icon, label }) => (
