@@ -62,6 +62,7 @@ const navLinks = [
   { label: "Résultats", href: "#resultats" },
   { label: "Formation", href: "#formation" },
   { label: "Coaching", href: "#coaching" },
+  { label: "Pass Combo", href: "#combo" },
   { label: "Témoignages", href: "#temoignages" },
   { label: "FAQ", href: "#faq" },
 ];
