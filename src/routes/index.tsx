@@ -524,6 +524,76 @@ function Index() {
           </div>
         </section>
 
+        {/* OFFRE 3 — PASS COMBO */}
+        <section id="combo" className="px-5 pb-20">
+          <div className="card-surface relative mx-auto grid w-full max-w-6xl gap-8 overflow-hidden p-6 sm:p-10 lg:grid-cols-[1.1fr_1fr_0.9fr]">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-primary"
+            />
+            <div>
+              <span className="inline-flex items-center rounded-md border border-primary/40 bg-primary/10 px-3 py-1 text-[10px] font-semibold tracking-[0.2em] text-primary-glow uppercase">
+                Offre 3 — Pass Combo
+              </span>
+              <h3 className="mt-5 font-display text-2xl font-bold">
+                Pass Combo — Formation + Coaching
+              </h3>
+              <p className="mt-3 text-sm text-muted-foreground">
+                La formation complète ET l'accompagnement individuel, pour aller plus vite et
+                plus loin.
+              </p>
+              <ul className="mt-6 space-y-3">
+                {[
+                  "Tous les modules de la formation (accès à vie)",
+                  "Le groupe privé + les 2 bonus",
+                  "Coaching individuel sur Google Meet",
+                  "Le meilleur des deux mondes à prix réduit",
+                ].map((t) => (
+                  <li key={t} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary-glow" />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-lg border border-primary/30 bg-background/60 p-6">
+              <p className="text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
+                Formation + Coaching
+              </p>
+              <p className="mt-3 text-sm font-medium text-muted-foreground line-through">
+                130.000 FCFA
+              </p>
+              <p className="font-display text-4xl font-extrabold text-gradient-primary">
+                90.000 FCFA
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">Paiement unique</p>
+              <div className="mt-6 flex items-center gap-3">
+                <a
+                  href="#payment-combo"
+                  className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-primary px-4 text-sm font-semibold text-primary-foreground glow transition-transform hover:-translate-y-0.5"
+                >
+                  Choisir le Pass Combo <ArrowRight className="h-4 w-4" />
+                </a>
+                <WhatsAppButton label="Poser une question sur le Pass Combo via WhatsApp" />
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <Sparkles className="h-6 w-6 shrink-0 text-primary-glow" />
+              <div>
+                <p className="font-display text-sm font-bold text-primary-glow">
+                  Économise 40.000 FCFA
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  Tu repars avec la formation complète à vie et un coaching individuel pour
+                  débloquer chaque étape.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* TÉMOIGNAGES */}
         <section id="temoignages" className="px-5 pb-20">
           <div className="mx-auto w-full max-w-6xl">
