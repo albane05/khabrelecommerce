@@ -686,13 +686,13 @@ function Index() {
                 Ta place dans l'e-commerce commence maintenant
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Rejoins la formation ou le coaching, ou écris-moi sur WhatsApp si tu as des
-                questions avant.
+                Rejoins la formation, le coaching ou les deux avec le Pass Combo.
               </p>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              <CtaButton href="#payment-formation">Rejoindre la formation</CtaButton>
-              <CtaButton href="#payment-coaching">Rejoindre le coaching</CtaButton>
+              <CtaButton href="#payment-formation">Formation</CtaButton>
+              <CtaButton href="#payment-coaching">Coaching</CtaButton>
+              <CtaButton href="#payment-combo">Pass Combo</CtaButton>
               <WhatsAppButton label="Écrire à Khabrel sur WhatsApp" />
             </div>
           </div>
