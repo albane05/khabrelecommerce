@@ -734,6 +734,7 @@ function Index() {
                 { label: "La méthode", href: "#methode" },
                 { label: "Formation", href: "#formation" },
                 { label: "Coaching", href: "#coaching" },
+                { label: "Pass Combo", href: "#combo" },
               ],
             },
             {
