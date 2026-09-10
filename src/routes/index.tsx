@@ -26,7 +26,12 @@ import {
 } from "lucide-react";
 
 import { CountUp } from "@/components/CountUp";
-import heroImg from "@/assets/hero.jpg";
+import { Urgency, SecureBadge } from "@/components/Urgency";
+import khabrelPortrait from "@/assets/khabrel-portrait.jpg.asset.json";
+import avatar1 from "@/assets/avatars/a1.jpg";
+import avatar2 from "@/assets/avatars/a2.jpg";
+import avatar3 from "@/assets/avatars/a3.jpg";
+import avatar4 from "@/assets/avatars/a4.jpg";
 import credibility from "@/assets/credibility.jpg";
 import temoignage1 from "@/assets/temoignages/t1.jpg.asset.json";
 import temoignage2 from "@/assets/temoignages/t2.png.asset.json";
@@ -56,6 +61,8 @@ export const Route = createFileRoute("/")({
 const WHATSAPP = "http://wa.me/24177146624";
 const TIKTOK = "https://www.tiktok.com/@khabrel_ecom";
 const INSTAGRAM = "https://www.instagram.com/khabrel._.ecom";
+const COMBO_LINK =
+  "https://khabrel-academie-ecom-9.mymaketou.shop/products/pass-combo-formation-coaching-e-commerce";
 
 const navLinks = [
   { label: "Méthode", href: "#methode" },
@@ -247,25 +254,19 @@ function Index() {
                 <CtaButton href="#methode">
                   Découvre la méthode <ArrowRight className="h-4 w-4" />
                 </CtaButton>
-                <a
-                  href={WHATSAPP}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-secondary/60 px-5 text-sm font-semibold transition-colors hover:bg-secondary"
-                >
-                  Écris-moi sur WhatsApp
-                  <WhatsAppIcon className="h-4 w-4 text-whatsapp" />
-                </a>
               </div>
               <div className="mt-8 flex items-center gap-3">
                 <div className="flex -space-x-2">
-                  {["K", "A", "M", "S"].map((c) => (
-                    <span
-                      key={c}
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-background bg-accent text-[11px] font-semibold"
-                    >
-                      {c}
-                    </span>
+                  {[avatar1, avatar2, avatar3, avatar4].map((src, i) => (
+                    <img
+                      key={src}
+                      src={src}
+                      alt={`Élève accompagné ${i + 1}`}
+                      loading="lazy"
+                      width={512}
+                      height={512}
+                      className="h-8 w-8 rounded-full border-2 border-background object-cover"
+                    />
                   ))}
                 </div>
                 <p className="text-xs leading-snug text-muted-foreground">
@@ -278,11 +279,11 @@ function Index() {
             <div className="relative">
               <div className="overflow-hidden rounded-xl border border-border">
                 <img
-                  src={heroImg}
-                  alt="Khabrel travaillant sur son business e-commerce"
+                  src={khabrelPortrait.url}
+                  alt="Khabrel, coach formateur en e-commerce"
                   width={1280}
-                  height={960}
-                  className="h-72 w-full object-cover sm:h-[24rem]"
+                  height={1920}
+                  className="h-72 w-full object-cover object-top sm:h-[24rem]"
                 />
               </div>
               <div className="card-surface absolute -top-5 -left-4 w-40 p-3 backdrop-blur-sm sm:-left-8">
@@ -437,14 +438,15 @@ function Index() {
                 45.000 FCFA
               </p>
               <p className="mt-1 text-xs text-muted-foreground">Paiement unique</p>
-              <div className="mt-6 flex items-center gap-3">
+              <div className="mt-6">
+                <Urgency />
                 <a
                   href="#payment-formation"
-                  className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-primary px-4 text-sm font-semibold text-primary-foreground glow transition-transform hover:-translate-y-0.5"
+                  className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-gradient-primary px-4 text-sm font-semibold text-primary-foreground glow transition-transform hover:-translate-y-0.5"
                 >
                   Rejoindre la formation <ArrowRight className="h-4 w-4" />
                 </a>
-                <WhatsAppButton label="Poser une question sur la formation via WhatsApp" />
+                <SecureBadge />
               </div>
             </div>
 
@@ -498,14 +500,15 @@ function Index() {
                 85.000 FCFA
               </p>
               <p className="mt-1 text-xs text-muted-foreground">Places limitées</p>
-              <div className="mt-6 flex items-center gap-3">
+              <div className="mt-6">
+                <Urgency />
                 <a
                   href="#payment-coaching"
-                  className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-primary px-4 text-sm font-semibold text-primary-foreground glow transition-transform hover:-translate-y-0.5"
+                  className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-gradient-primary px-4 text-sm font-semibold text-primary-foreground glow transition-transform hover:-translate-y-0.5"
                 >
                   Rejoindre le coaching <ArrowRight className="h-4 w-4" />
                 </a>
-                <WhatsAppButton label="Poser une question sur le coaching via WhatsApp" />
+                <SecureBadge />
               </div>
             </div>
 
@@ -568,14 +571,17 @@ function Index() {
                 90.000 FCFA
               </p>
               <p className="mt-1 text-xs text-muted-foreground">Paiement unique</p>
-              <div className="mt-6 flex items-center gap-3">
+              <div className="mt-6">
+                <Urgency />
                 <a
-                  href="#payment-combo"
-                  className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-primary px-4 text-sm font-semibold text-primary-foreground glow transition-transform hover:-translate-y-0.5"
+                  href={COMBO_LINK}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-gradient-primary px-4 text-sm font-semibold text-primary-foreground glow transition-transform hover:-translate-y-0.5"
                 >
                   Choisir le Pass Combo <ArrowRight className="h-4 w-4" />
                 </a>
-                <WhatsAppButton label="Poser une question sur le Pass Combo via WhatsApp" />
+                <SecureBadge />
               </div>
             </div>
 
@@ -690,9 +696,9 @@ function Index() {
               </p>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              <CtaButton href="#payment-formation">Formation</CtaButton>
-              <CtaButton href="#payment-coaching">Coaching</CtaButton>
-              <CtaButton href="#payment-combo">Pass Combo</CtaButton>
+              <CtaButton href="#formation">Formation</CtaButton>
+              <CtaButton href="#coaching">Coaching</CtaButton>
+              <CtaButton href="#combo">Pass Combo</CtaButton>
               <WhatsAppButton label="Écrire à Khabrel sur WhatsApp" />
             </div>
           </div>
